@@ -23,19 +23,19 @@ public class UserController {
 	
 	
 	@RequestMapping("/student/login")
-	public ModelAndView studentLogin(User user) {
-		ModelAndView model = new ModelAndView("img2word");
+	public String studentLogin(User user) {
+		ModelAndView model = new ModelAndView("itemList");
 
 		System.out.print(user.getUsername());
-		return model;
+		return "redirect:/itemList.html";
 	}
 
 	@RequestMapping("/manager/login")
-	public ModelAndView managerLogin(User user) {
-		ModelAndView model = new ModelAndView("img2word");
+	public String managerLogin(User user) {
+		ModelAndView model = new ModelAndView("itemList");
 
 		System.out.print(user.getUsername());
-		return model;
+		return "redirect:/itemList.html";
 	}
 	@RequestMapping("/goToRegister")
 	public String goToRegister() {

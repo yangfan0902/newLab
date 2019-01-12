@@ -1,0 +1,112 @@
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript">
+
+        /*var data = [
+            {
+                "id":"124828465",
+                "name":       "Tiger Nixon",
+                "position":   "System Architect",
+                "salary":     "$3,120",
+                "start_date": "2011/04/25",
+                "office":     "Edinburgh",
+                "extn":       "5421"
+            },
+            {
+                "id":"1235",
+                "name":       "Garrett Winters",
+                "position":   "Director",
+                "salary":     "$5,300",
+                "start_date": "2011/07/25",
+                "office":     "Edinburgh",
+                "extn":       "8422"
+            }
+        ];*/
+
+        $(document).ready( function () {
+            var data=null;
+            $.ajax({
+            	async:false,
+                type:"GET",
+                url:"http://localhost:8086/item/itemList",
+                dataType:"json",
+                success:function(result){
+                        data=result;
+                }
+            })
+
+            $('#_table').DataTable({
+                autoWidth: true,
+                ordering:false,
+
+                data:data,
+                columns:[
+                    {data:'id'},
+                    {data:'name'},
+                    {data:'price'},
+                    {data:'number'},
+                    {data:'totalPrice'},
+                    {data:'createTime'},
+                    {data:'check'},
+                    {
+                        "render": function (data, type, full, meta) {
+                            return '<button type="button"  class="edit btn btn-info rounded btn-xs">修改</button> <button type="button" id="delete" class="delete btn btn-info rounded btn-xs">删除</button>';
+                        }
+
+
+                    }
+
+                ]
+
+
+            });
+
+            $(".edit").click(function(e){
+                var id = $(this).parents('tr')[0].cells[0].innerHTML;
+                layer.open({
+                    type: 2,
+                    title: $(this).val() + '订单修改',
+                    shade: 0.5,
+                    anim: 5,
+                    closeBtn: 2,
+                    maxmin: true,
+                    skin: 'layui-layer-rim',
+                    area: ['1000px', '630px'],
+                    content: "http://localhost:8086/itemDetail.html?id="+id
+                });
+            })
+
+
+
+        } );
+    </script>
+</head>
+<body>
+<table id="_table" class="display">
+    <thead id="_thead">
+    <tr>
+        <th>商品编号</th>
+        <th>商品</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>总价</th>
+        <th>创建时间</th>
+        <th>审批状况</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="_tbody">
+
+    </tbody>
+</table>
+</body>

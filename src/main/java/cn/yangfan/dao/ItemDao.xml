@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yangfan.dao.ItemDao">
+	<select id="getItem" parameterType="String" resultType="pojo.Item">
+		select * from newitem where id=#{id}
+	</select>
+	
+	<update id="updateItem" parameterType="pojo.Item">
+		UPDATE newitem SET id = #{id}, name=#{name},price=#{price},number=#{number},totalPrice=#{totalPrice},comment=#{comment},check=#{check},ceateTime=#{createTime}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteItem" parameterType="String">
+		DELETE FROM newitem WHERE id = #{id}
+	</delete>
+	
+	<!-- 直接写出user的属性即可，不需要user.username -->
+	<insert id="addItem" parameterType="pojo.Item">
+		insert into newitem (name,price,number,totalPrice,comment,check,createTime) values (#{name},#{price},#{number},#{totalPrice},#{comment},#{check},#{createTime})
+	</insert>
+	
+	<select id="getItemList" resultType="pojo.Item">
+		select * from newitem
+	</select>
+</mapper>
