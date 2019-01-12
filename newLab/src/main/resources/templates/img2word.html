@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<title>img2word.html</title>
+<meta http-equiv="Content-Type"
+	content="multipart/form-data; charset=utf-8" />
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript">
+
+	function imgPreview(fileDom) {
+		
+		//获取文件
+		var file = fileDom.files[0];
+		var imageType = /^image\//;
+		//是否是图片
+		if (!imageType.test(file.type)) {
+			alert("请选择图片！");
+			return;
+		}
+	}
+
+
+
+	function submit(){
+		var formData = new FormData();
+		formData.append('file', $('#inputFile')[0].files[0]); //添加图片信息的参数
+		$.ajax({
+			url : 'http://10.192.37.76:8081/dealImg',
+			type : 'POST',
+			cache : false, //上传文件不需要缓存
+			data : formData,
+			async: true,
+			dataType:'json',
+			processData : false, // 告诉jQuery不要去处理发送的数据
+			contentType : false, // 告诉jQuery不要去设置Content-Type请求头
+			success : function(data) {
+				$("#textArea").val(data.words);
+			},
+			error : function(data) {
+				alert("上传失败");
+			}
+		})
+	}
+
+	$(document).ready(function() {
+		$("#submit").click(function() {
+			submit();
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div class="file-box">
+		<!-- <input type="text" id="imgfield" class="txt"> --> 
+		<input type="file" name="file" id="inputFile" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="imgPreview(this)">
+		<input type="button" id="submit" value="提交"></input>
+		<br/>
+		<textarea id="textArea" rows="20" cols="100"></textarea>
+	</div>
+
+
+</body>
+</html>
