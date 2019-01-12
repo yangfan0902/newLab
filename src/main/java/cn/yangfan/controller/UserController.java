@@ -51,7 +51,7 @@ public class UserController {
 		}
 		System.out.print(user.getUsername());
 		System.out.print(user.getPassword());
-		return "img2word";
+		return "redirect:/registerBack.html";
 	}
 	
 	@RequestMapping("/register/confirm")

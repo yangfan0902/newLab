@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>registerBack.html</title>
+<meta http-equiv="Content-Type"
+	content="multipart/form-data; charset=utf-8" />
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/iconic/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		var t = 5;
+		var timer = setInterval(time, 1000);
+		var span = $("#begin");
+		function time() {
+			t--;
+			span.text(t)
+			if (t == 0) {
+				clearInterval(timer);
+				return window.location.href = "http://localhost:8086/"
+			}
+		}
+
+	})
+</script>
+
+<style type="text/css">
+	#message{
+		font-family: Poppins-Regular;
+		 text-align: center;
+		 color:red;
+		 font-size:32px;
+		 margin-top: 200px;
+	}
+	#time{
+	font-family: Poppins-Regular;
+		text-align: center;
+	}
+	#goal{
+	font-family: Poppins-Regular;
+		text-align: center;
+	}
+	
+</style>
+</head>
+
+<body>
+	<h1 id="message">注 册 成 功</h1>
+	<br />
+	<div id="time">
+	<span id="begin">5</span>秒钟之后自动跳转，如果不跳转，请点击下面链接
+	</div>
+	<div id="goal">
+	<a href="http://localhost:8086">目标页面</a>
+	</div>
+
+</body>
+</html>
