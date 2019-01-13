@@ -48,7 +48,7 @@
             $('#_table').DataTable({
                 autoWidth: true,
                 ordering:false,
-
+				
                 data:data,
                 columns:[
                     {data:'id'},
@@ -56,6 +56,7 @@
                     {data:'price'},
                     {data:'number'},
                     {data:'totalPrice'},
+                    {data:'comment'},
                     {data:'createTime'},
                     {data:'check'},
                     {
@@ -66,7 +67,13 @@
 
                     }
 
-                ]
+                ],
+                'columnDefs': [
+        			{ "width": "5%", "targets": [0,2,3,4] },
+        			{ "width": "15%", "targets": 1 },
+        			{ "width": "25%", "targets": 5 },
+        
+      			]
 
 
             });
@@ -100,6 +107,7 @@
         <th>单价</th>
         <th>数量</th>
         <th>总价</th>
+        <th>备注</th>
         <th>创建时间</th>
         <th>审批状况</th>
         <th>操作</th>
