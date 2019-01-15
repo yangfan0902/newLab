@@ -36,4 +36,11 @@ public class ItemController {
 		itemList=itemService.getItemList();
 		return itemList;
 	}
+	
+	@RequestMapping("/item/add")
+	@ResponseBody
+	public String addItem(Item item){
+		itemService.addItem(item);
+		return "";
+	}
 }

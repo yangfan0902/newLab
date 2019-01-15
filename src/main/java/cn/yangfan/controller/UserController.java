@@ -28,17 +28,16 @@ public class UserController {
 	@RequestMapping("/student/login")
 	public String studentLogin(User user) {
 		
-		
+		String name=user.getUsername();
 		System.out.print(user.getUsername());
-		return "redirect:/itemList.html";
+		return "redirect:/itemList.html?username="+name;
 	}
 
 	@RequestMapping("/manager/login")
 	public String managerLogin(User user) {
-		ModelAndView model = new ModelAndView("itemList");
-
 		System.out.print(user.getUsername());
-		return "redirect:/itemList.html";
+		String name=user.getUsername();
+		return "redirect:/itemList.html?username="+name;
 	}
 	@RequestMapping("/goToRegister")
 	public String goToRegister() {
@@ -102,5 +101,6 @@ public class UserController {
 		
 		return result;
 	}
+	
 
 }

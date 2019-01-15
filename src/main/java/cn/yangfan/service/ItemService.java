@@ -17,7 +17,7 @@ public class ItemService {
 		itemDao.addItem(item);
 	}
 	
-	public void deleteItem(String id){
+	public void deleteItem(int id){
 		itemDao.deleteItem(id);
 	}
 	
@@ -25,7 +25,7 @@ public class ItemService {
 		itemDao.updateItem(item);
 	}
 	
-	public Item getItem(String id){
+	public Item getItem(int id){
 		return itemDao.getItem(id);
 	}
 

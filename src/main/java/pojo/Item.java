@@ -1,14 +1,19 @@
 package pojo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Item {
 	private String name;
 	private double price;
 	private int number;
 	private double totalPrice;
 	private String comment;
-	private int check;
+	private int p_check;
 	private String createTime;
-	private String id;
+	private int id;
+	private String p_name;
+	private String category;
 	public String getName() {
 		return name;
 	}
@@ -37,22 +42,36 @@ public class Item {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public int getCheck() {
-		return check;
-	}
-	public void setCheck(int check) {
-		this.check = check;
-	}
+	
 	public String getCreateTime() {
-		return createTime;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(new Date());
+	
 	}
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
+	
+	
+	public String getP_name() {
+		return p_name;
 	}
-	public String getId() {
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getP_check() {
+		return p_check;
+	}
+	public void setP_check(int p_check) {
+		this.p_check = p_check;
+	}
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

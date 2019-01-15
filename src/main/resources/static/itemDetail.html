@@ -1,24 +1,99 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>itemDetail.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<link href="css/demo.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-3.3.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+	//js获取url后的参数
+	function GetRequest() {
+		var url = location.search; //获取url中"?"符后的字串 
+		var theRequest = new Object();
+		if (url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			strs = str.split("&");
+			for (var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+			}
+		}
+		return theRequest;
+	}
+	
+	$(document).ready(function(){
+		var username=GetRequest()['username'];
+		$("#username").val(username);
+		
+	})
 
-<meta http-equiv="Content-Type"
-	content="multipart/form-data; charset=utf-8" />
-<meta name="keywords" content="keyword1,keyword2,keyword3">
-<meta name="description" content="this is my page">
-<meta name="content-type" content="text/html; charset=UTF-8">
-
-<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-
+</script>
 </head>
-
 <body>
-	<form action="">
-		<input name="price"></input> <input name="number"></input> <input
-			name="comment"></input>
 
-		<button>提交</button>
-	</form>
+	<div class="container" style="border-bottom: 0;">
+		<h1>
+			<span>订单填写</span>
+		</h1>
+	</div>
+	<div class="container">
+		<form class="contact" action="http://localhost:8086/item/add" method="post" id="form">
+			
+				
+			<input type="text" id="username" name="p_name" data-required="true" disabled="disabled" />
+				
+			<div class="row clearfix">
+				<div class="lbl">
+					<label for="name">商品名称</label>
+				</div>
+				<div class="ctrl">
+					<input type="text" id="name" name="name" data-required="true" />
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="lbl">
+					<label>单价</label>
+				</div>
+				<div class="ctrl">
+					<input type="text" id="price" name="price" data-required="true" />
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="lbl">
+					<label>数量</label>
+				</div>
+				<div class="ctrl">
+					<input type="text" id="number" name="number" data-required="true" />
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="lbl">
+					<label for="subject">分类</label>
+				</div>
+				<div class="ctrl">
+					<select name="category">
+						<option value="实验耗材">实验耗材</option>
+						<option value="气体">气体</option>
+						<option value="测试分析">测试分析</option>
+						<option value="化学药品">化学药品</option>
+						<option value="仪器设备">仪器设备</option>
+					</select>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="lbl">
+					<label for="message">备注</label>
+				</div>
+				<div class="ctrl">
+					<textarea id="comment" name="comment" rows="6" cols="10"></textarea>
+				</div>
+			</div>
+			<div class="row  clearfix">
+				<div class="span10 offset2">
+					<input type="submit" name="submit" id="submit" class="submit" value="提交"/>
+				</div>
+			</div>
+		</form>
+	</div>
 </body>
 </html>
+

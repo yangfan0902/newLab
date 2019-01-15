@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updateItem" parameterType="pojo.Item">
-		UPDATE newitem SET id = #{id}, name=#{name},price=#{price},number=#{number},totalPrice=#{totalPrice},comment=#{comment},check=#{check},ceateTime=#{createTime}
+		UPDATE newitem SET id = #{id}, name=#{name},price=#{price},number=#{number},totalPrice=#{totalPrice},comment=#{comment},check=#{check},ceateTime=#{createTime},p_name=#{p_name},category=#{category}
 		WHERE id = #{id}
 	</update>
 	
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 直接写出user的属性即可，不需要user.username -->
 	<insert id="addItem" parameterType="pojo.Item">
-		insert into newitem (name,price,number,totalPrice,comment,check,createTime) values (#{name},#{price},#{number},#{totalPrice},#{comment},#{check},#{createTime})
+		insert into newitem (name,price,number,totalPrice,comment,p_check,createTime,p_name,category) values (#{name},#{price},#{number},#{totalPrice},#{comment},#{p_check},#{createTime},#{p_name},#{category})
 	</insert>
 	
 	<select id="getItemList" resultType="pojo.Item">
