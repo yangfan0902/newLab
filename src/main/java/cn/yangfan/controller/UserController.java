@@ -3,6 +3,7 @@ package cn.yangfan.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class UserController {
 	
 	@RequestMapping("/student/login")
 	public String studentLogin(User user) {
-		ModelAndView model = new ModelAndView("itemList");
-
+		
+		
 		System.out.print(user.getUsername());
 		return "redirect:/itemList.html";
 	}
@@ -75,16 +76,28 @@ public class UserController {
 	
 	@RequestMapping("/loginCheck")
 	@ResponseBody
-	public UserResult getUserByName(@RequestBody User checkUser) {
+	public UserResult getUserByName(@RequestBody User checkUser, HttpServletRequest request) {
 		UserResult result=new UserResult();
+			
 		User user=userService.getUserByName(checkUser.getUsername());
 		if(user==null){
 			result.setState(1);
 			result.setMsg("用户名不存在");
+			return result;
 		}
 		else if(!user.getPassword().equals(checkUser.getPassword())){
 			result.setState(2);
 			result.setMsg("密码错误");
+			return result;
+		}
+		
+		if("admin".equals(request.getParameter("type"))){
+			String role=user.getRole();
+			if(!"admin".equals(role)){
+				result.setState(3);
+				result.setMsg("没有权限");
+				
+			}
 		}
 		
 		return result;

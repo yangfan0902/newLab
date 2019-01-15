@@ -30,9 +30,9 @@
 				type:"POST",
 				contentType: "application/json; charset=utf-8",
 				data:JSON.stringify({'username':username,
-					  'password':password
+					  'password':password,
 				}),
-				url:"http://localhost:8086/user/loginCheck",
+				url:"http://localhost:8086/user/loginCheck?type=user",
 				dataType:"json",
 				success:function(data){
 					result=data;
@@ -42,6 +42,9 @@
 					}
 					if(data.state==2){
 						alert("用户名或密码错误");
+						flag=false;
+					}if(data.state==3){
+						alert("没有权限");
 						flag=false;
 					}
 						
@@ -63,7 +66,43 @@
 		
 		
 		$("#managerLogin").click(function(){
-			alert(123);
+			var username=$("#username").val();
+			var password=$("#password").val();
+			var result;
+			var flag=true;
+			$.ajax({
+				async:false,
+				type:"POST",
+				contentType: "application/json; charset=utf-8",
+				data:JSON.stringify({'username':username,
+					  'password':password,
+				}),
+				url:"http://localhost:8086/user/loginCheck?type=admin",
+				dataType:"json",
+				success:function(data){
+					result=data;
+					if(data.state==1){
+						alert("用户名不存在");
+						flag=false;
+					}
+					if(data.state==2){
+						alert("用户名或密码错误");
+						flag=false;
+					}if(data.state==3){
+						alert("没有权限");
+						flag=false;
+					}
+						
+				},
+				error:function(){
+					flag= false;
+				}
+			});
+			if(!flag){
+				return flag;
+				
+			}
+		
 			$("#myform").attr("action","http://localhost:8086/user/manager/login");
 			$("#myform").submit();
 		});	
