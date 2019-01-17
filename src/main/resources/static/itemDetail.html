@@ -21,9 +21,48 @@
 	}
 	
 	$(document).ready(function(){
+		var operation=GetRequest()['operation'];
 		var username=GetRequest()['username'];
-		$("#username").val(username);
+		if(operation=="add"){
+			$("#username").val(username);
+			$("#id").val("0");
+		}else if(operation=="edit"){
+			var id=GetRequest()['id'];
+			$("#username").val(username);
+			$("#id").val(id);
+		}else if(operation=="delete"){
+			var id=GetRequest()['id'];
+			$("#username").val(username);
+			$("#id").val(id);
+		};
 		
+		$("#submit").click(function(){
+			$.ajax({
+				asyn:false,
+				type:"post",
+				url:"http://localhost:8086/item/add",
+				data:$(".contact").serialize(),
+				dataType:"json",
+				success:function(data){
+					if(data.state=="200"){
+						alert(data.msg);
+					}
+					window.parent.location.reload();
+					window.parent.layer.closeAll();
+				},
+				error:function(){
+					alert("失败");
+					window.parent.layer.closeAll();
+				}
+			})
+			/* setTimeout(function(){alert("hhh")},1000);
+			$(".contact").submit();
+			
+			setTimeout(function(){alert("hhh")},1000)
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.layer.close(index); */
+		})
+			
 	})
 
 </script>
@@ -39,7 +78,8 @@
 		<form class="contact" action="http://localhost:8086/item/add" method="post" id="form">
 			
 				
-			<input type="text" id="username" name="p_name" data-required="true" disabled="disabled" />
+			<input type="text" id="username" name="p_name" readonly="true"  />
+			<input type="hidden" id="id" name="id"/>
 				
 			<div class="row clearfix">
 				<div class="lbl">
@@ -89,7 +129,7 @@
 			</div>
 			<div class="row  clearfix">
 				<div class="span10 offset2">
-					<input type="submit" name="submit" id="submit" class="submit" value="提交"/>
+					<input type="button" name="submit" id="submit" class="submit" value="提交"/>
 				</div>
 			</div>
 		</form>

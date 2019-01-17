@@ -34,4 +34,8 @@ public class ItemService {
 		return itemDao.getItemList();
 	}
 
+	public ArrayList<Item> getItemListByUsername(String username) {
+		return itemDao.getItemListByUsername(username);
+	}
+
 }

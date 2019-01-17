@@ -10,4 +10,5 @@ public interface ItemDao {
 	public void updateItem(Item item);
 	public Item getItem(int id);
 	public ArrayList<Item> getItemList();
+	public ArrayList<Item> getItemListByUsername(String username);
 }

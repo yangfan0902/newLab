@@ -8,11 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updateItem" parameterType="pojo.Item">
-		UPDATE newitem SET id = #{id}, name=#{name},price=#{price},number=#{number},totalPrice=#{totalPrice},comment=#{comment},check=#{check},ceateTime=#{createTime},p_name=#{p_name},category=#{category}
+		UPDATE newitem SET id = #{id}, name=#{name},price=#{price},number=#{number},totalPrice=#{totalPrice},comment=#{comment},p_check=#{p_check},createTime=#{createTime},p_name=#{p_name},category=#{category}
 		WHERE id = #{id}
 	</update>
 	
-	<delete id="deleteItem" parameterType="String">
+	<delete id="deleteItem" parameterType="Integer">
 		DELETE FROM newitem WHERE id = #{id}
 	</delete>
 	
@@ -23,5 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getItemList" resultType="pojo.Item">
 		select * from newitem
+	</select>
+	
+	<select id="getItemListByUsername" parameterType="String" resultType="pojo.Item">
+		select * from newitem where p_name=#{username}
 	</select>
 </mapper>
