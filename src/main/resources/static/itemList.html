@@ -169,6 +169,9 @@ function GetRequest() {
 
 
 		})
+		$("#logout").click(function(){
+			window.location.href = "/";
+		})
 
 	});
 </script>
@@ -194,7 +197,7 @@ function GetRequest() {
 														<img src="images/pass.gif" width="69" height="17" />
 													</div></td>
 												
-												<td><div align="right">
+												<td><div align="right" id="logout">
 														<img src="images/quit.gif" width="69" height="17" />
 													</div></td>
 											</tr>

@@ -46,6 +46,12 @@ public class ItemController {
 	public Map addItem(Item item){
 		Map result=new HashMap();
 		try{
+			String username=item.getP_name();
+			if(username.equals("null")){
+				result.put("msg", "请重新登录");
+				result.put("state", "500");
+				return result;
+			}
 			if(item.getId()!=0){
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 				item.setCreateTime(sdf.format(new Date()));

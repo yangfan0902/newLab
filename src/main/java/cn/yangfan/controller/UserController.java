@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import cn.yangfan.service.UserService;
 import pojo.User;
 import pojo.UserResult;
@@ -110,6 +111,13 @@ public class UserController {
 		}
 		
 		return result;
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(){
+		
+		ModelAndView model=new ModelAndView("index");
+		return model;
 	}
 	
 
