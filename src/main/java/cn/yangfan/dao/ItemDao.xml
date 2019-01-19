@@ -22,10 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="getItemList" resultType="pojo.Item">
-		select * from newitem
+		select * from newitem order By createTime DESC
 	</select>
 	
 	<select id="getItemListByUsername" parameterType="String" resultType="pojo.Item">
-		select * from newitem where p_name=#{username}
+		select * from newitem where p_name=#{username} order By createTime DESC
 	</select>
 </mapper>

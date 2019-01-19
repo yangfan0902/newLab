@@ -1,6 +1,8 @@
 package cn.yangfan.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,11 +47,15 @@ public class ItemController {
 		Map result=new HashMap();
 		try{
 			if(item.getId()!=0){
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				item.setCreateTime(sdf.format(new Date()));
 				itemService.updateItem(item);
 				result.put("msg", "修改成功");
 				result.put("state", "200");
 				return result;
 			}else{
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				item.setCreateTime(sdf.format(new Date()));
 				itemService.addItem(item);
 				result.put("msg", "添加成功");
 				result.put("state", "200");

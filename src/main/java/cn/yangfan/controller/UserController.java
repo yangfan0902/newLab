@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,11 +27,11 @@ public class UserController {
 	
 	
 	@RequestMapping("/student/login")
-	public String studentLogin(User user) {
+	public String studentLogin(User user,HttpSession session) {
 		
 		String name=user.getUsername();
-		System.out.print(user.getUsername());
-		return "redirect:/itemList.html?username="+name;
+		session.setAttribute("username", name);
+		return "redirect:/itemList.html";
 	}
 
 	@RequestMapping("/manager/login")
@@ -54,6 +55,15 @@ public class UserController {
 		System.out.print(user.getUsername());
 		System.out.print(user.getPassword());
 		return "redirect:/registerBack.html";
+	}
+	
+	@RequestMapping("/name")
+	@ResponseBody
+	public Map getUsername(HttpSession session) {
+		String username=(String) session.getAttribute("username");
+		Map result=new HashMap();
+		result.put("username", username);
+		return result;
 	}
 	
 	@RequestMapping("/register/confirm")

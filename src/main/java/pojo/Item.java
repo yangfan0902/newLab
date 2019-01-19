@@ -42,10 +42,14 @@ public class Item {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+	public void setCreateTime(String time){
+		this.createTime=time;
+	}
 	
 	public String getCreateTime() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		return sdf.format(new Date());
+		
+		return createTime;
 	
 	}
 	
