@@ -78,6 +78,9 @@ function GetRequest() {
 					data : 'name'
 				},
 				{
+					data : 'category'
+				},
+				{
 					data : 'price'
 				},
 				{
@@ -105,15 +108,15 @@ function GetRequest() {
 			'columnDefs' : [
 				{
 					"width" : "5%",
-					"targets" : [ 0, 2, 3, 4 ]
+					"targets" : [ 0,1, 3, 4,5,6,9 ]
 				},
 				{
 					"width" : "15%",
-					"targets" : 1
+					"targets" : 2
 				},
 				{
 					"width" : "25%",
-					"targets" : 5
+					"targets" : 7
 				},
 
 			]
@@ -170,7 +173,19 @@ function GetRequest() {
 
 		})
 		$("#logout").click(function(){
-			window.location.href = "/";
+			$.ajax({
+				async:false,
+				type:"get",
+				dataType:"json",
+				url:"http://localhost:8086/user/logout",
+				success:function(data){
+					if(data.state=="200"){
+						window.location.href = "/";
+					}
+					
+				}
+			})
+			
 		})
 
 	});
@@ -236,7 +251,7 @@ function GetRequest() {
 			</td>
 		</tr>
 	</table>
-
+	<br/>
 
 
 
@@ -264,6 +279,7 @@ function GetRequest() {
 					<th>编号</th>
 					<th>姓名</th>
 					<th>商品</th>
+					<th>种类</th>
 					<th>单价</th>
 					<th>数量</th>
 					<th>总价</th>

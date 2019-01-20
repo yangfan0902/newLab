@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -114,10 +115,17 @@ public class UserController {
 	}
 	
 	@RequestMapping("/logout")
-	public ModelAndView logout(){
+	@ResponseBody
+	public Map logout(HttpSession session){
+		if(null!=session){
+			session.invalidate();
+		}
+		Map result=new HashMap();
+		result.put("state", "200");
+		result.put("msg","退出成功");
+		return result;
 		
-		ModelAndView model=new ModelAndView("index");
-		return model;
+		
 	}
 	
 
