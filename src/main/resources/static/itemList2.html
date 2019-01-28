@@ -42,7 +42,7 @@ function GetRequest() {
 		$.ajax({
 			async : false,
 			type : "get",
-			url : "http://localhost:8086/user/name",
+			url : "/user/name",
 			dataType : "json",
 			success : function(result) {
 				username = result.username;
@@ -51,7 +51,7 @@ function GetRequest() {
 		$.ajax({
 			async : false,
 			type : "GET",
-			url : "http://localhost:8086/item/itemList?username=" + username,
+			url : "/item/itemList?username=" + username,
 			dataType : "json",
 			success : function(result) {
 				data = result;
@@ -134,7 +134,7 @@ function GetRequest() {
 				maxmin : true,
 				skin : 'layui-layer-rim',
 				area : [ '900px', '750px' ],
-				content : "http://localhost:8086/itemDetail.html?id=" + id + "&username=" + username + "&operation=edit",
+				content : "/itemDetail.html?id=" + id + "&username=" + username + "&operation=edit",
 			});
 
 
@@ -145,7 +145,7 @@ function GetRequest() {
 			$.ajax({
 				async : false,
 				type : "GET",
-				url : "http://localhost:8086/item/delete?id=" + id + "&operation=delete",
+				url : "/item/delete?id=" + id + "&operation=delete",
 				dataType : "json",
 				success : function(data) {
 					alert("删除成功");
@@ -167,7 +167,7 @@ function GetRequest() {
 				maxmin : true,
 				skin : 'layui-layer-rim',
 				area : [ '900px', '750px' ],
-				content : "http://localhost:8086/itemDetail.html?username=" + username + "&operation=add",
+				content : "/itemDetail.html?username=" + username + "&operation=add",
 			});
 
 
@@ -177,7 +177,7 @@ function GetRequest() {
 				async:false,
 				type:"get",
 				dataType:"json",
-				url:"http://localhost:8086/user/logout",
+				url:"/user/logout",
 				success:function(data){
 					if(data.state=="200"){
 						window.location.href = "/";

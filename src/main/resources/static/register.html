@@ -32,7 +32,7 @@
 			$.ajax({
 				async:false,
 				type:"GET",
-				url:"http://localhost:8086/user/register/confirm?username="+username,
+				url:"/user/register/confirm?username="+username,
 				
 		
 				dataType:"json",
@@ -66,7 +66,7 @@
 		<div class="container-login100"
 			style="background-image: url('images/t01535f4a3021ea277c.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" id="registerForm" action="http://localhost:8086/user/register" method="POST">
+				<form class="login100-form validate-form" id="registerForm" action="/user/register" method="POST">
 					<span class="login100-form-title p-b-49">注册</span>
 
 					<div class="wrap-input100 validate-input m-b-23"

@@ -34,6 +34,7 @@ public class UserController {
 	public String studentLogin(User user,HttpSession session) {
 		
 		String name=user.getUsername();
+		session.removeAttribute("username");
 		session.setAttribute("username", name);
 		return "redirect:/itemList.html";
 	}
@@ -119,9 +120,9 @@ public class UserController {
 	@RequestMapping("/logout")
 	@ResponseBody
 	public Map logout(HttpSession session){
-		if(null!=session){
-			session.invalidate();
-		}
+
+		session.removeAttribute("username");;
+	
 		Map result=new HashMap();
 		result.put("state", "200");
 		result.put("msg","退出成功");

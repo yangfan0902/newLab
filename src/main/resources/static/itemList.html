@@ -54,12 +54,13 @@
 		$.ajax({
 			async : false,
 			type : "get",
-			url : "http://localhost:8086/user/name",
+			url : "/user/name",
 			dataType : "json",
 			success : function(result) {
 				username = result.username;
 			}
-		})
+		});
+		$("#STYLE1").html(username);
 		
 		 var table = $("#_table").dataTable({
             language:lang,  //提示信息
@@ -85,7 +86,7 @@
                 $.ajax({
                     type: "GET",
                     async:false,
-                    url: "http://localhost:8086/item/itemList?username=" + username+"&length="+length+"&start="+start,
+                    url: "/item/itemList?username=" + username+"&length="+length+"&start="+start,
                     cache: false,  //禁用缓存
                     dataType: "json",
                     success: function (result) {
@@ -162,8 +163,6 @@
 			]
         }).api();
 		
-		$("#STYLE1").html(username);
-
 		
 		$(document).on("click",".edit", function() {
 			var id = $(this).parents('tr')[0].cells[0].innerHTML;
@@ -177,49 +176,16 @@
 				maxmin : true,
 				skin : 'layui-layer-rim',
 				area : [ '900px', '750px' ],
-				content : "http://localhost:8086/itemDetail.html?id=" + id + "&username=" + username + "&operation=edit",
+				content : "/itemDetail.html?id=" + id + "&username=" + username + "&operation=edit",
 			});
 		});
 
-		/* $(".edit").click(function(e) {
-			
-			var id = $(this).parents('tr')[0].cells[0].innerHTML;
-			
-			var index = layer.open({
-				type : 2,
-				title : $(this).val() + '订单修改',
-				shade : 0.5,
-				anim : 5,
-				closeBtn : 2,
-				maxmin : true,
-				skin : 'layui-layer-rim',
-				area : [ '900px', '750px' ],
-				content : "http://localhost:8086/itemDetail.html?id=" + id + "&username=" + username + "&operation=edit",
-			});
-
-
-		});
- */
-		$(".delete").click(function(e) {
-			var id = $(this).parents('tr')[0].cells[0].innerHTML;
-			$.ajax({
-				async : false,
-				type : "GET",
-				url : "http://localhost:8086/item/delete?id=" + id + "&operation=delete",
-				dataType : "json",
-				success : function(data) {
-					alert("删除成功");
-					window.location.reload();
-				}
-			})
-
-		});
 		$(document).on("click",".delete", function() {
 			var id = $(this).parents('tr')[0].cells[0].innerHTML;
 			$.ajax({
 				async : false,
 				type : "GET",
-				url : "http://localhost:8086/item/delete?id=" + id + "&operation=delete",
+				url : "/item/delete?id=" + id + "&operation=delete",
 				dataType : "json",
 				success : function(data) {
 					alert("删除成功");
@@ -229,7 +195,20 @@
 		})
 
 		//创建订单
-		$("#create").click(function() {
+		$(document).on("click","#create", function() {
+			var index = layer.open({
+				type : 2,
+				title : $(this).val() + '新建订单',
+				shade : 0.5,
+				anim : 5,
+				closeBtn : 2,
+				maxmin : true,
+				skin : 'layui-layer-rim',
+				area : [ '900px', '750px' ],
+				content : "/itemDetail.html?username=" + username + "&operation=add",
+			});
+		})
+		/* $("#create").click(function() {
 
 			var index = layer.open({
 				type : 2,
@@ -240,17 +219,17 @@
 				maxmin : true,
 				skin : 'layui-layer-rim',
 				area : [ '900px', '750px' ],
-				content : "http://localhost:8086/itemDetail.html?username=" + username + "&operation=add",
+				content : "/itemDetail.html?username=" + username + "&operation=add",
 			});
 
 
-		})
+		}) */
 		$("#logout").click(function(){
 			$.ajax({
 				async:false,
 				type:"get",
 				dataType:"json",
-				url:"http://localhost:8086/user/logout",
+				url:"/user/logout",
 				success:function(data){
 					if(data.state=="200"){
 						window.location.href = "/";
@@ -326,21 +305,6 @@
 		</tr>
 	</table>
 	<br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<div>
 		<button id="create">创建订单</button>

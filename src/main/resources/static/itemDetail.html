@@ -39,7 +39,7 @@
 			$.ajax({
 				asyn:false,
 				type:"post",
-				url:"http://localhost:8086/item/add",
+				url:"/item/add",
 				data:$(".contact").serialize(),
 				dataType:"json",
 				success:function(data){
@@ -50,13 +50,15 @@
 					else if(data.state=="500"){
 						alert(data.msg);
 					}
+					
+					else if(data.state=="400"){
+						alert(data.msg);
+					}
+					
 					window.parent.location.reload();
 					window.parent.layer.closeAll();
-				},
-				error:function(){
-					alert("失败");
-					window.parent.layer.closeAll();
 				}
+				
 			})
 			/* setTimeout(function(){alert("hhh")},1000);
 			$(".contact").submit();
@@ -78,7 +80,7 @@
 		</h1>
 	</div>
 	<div class="container">
-		<form class="contact" action="http://localhost:8086/item/add" method="post" id="form">
+		<form class="contact" action="/item/add" method="post" id="form">
 			
 				
 			<input type="text" id="username" name="p_name" readonly="true"  />
