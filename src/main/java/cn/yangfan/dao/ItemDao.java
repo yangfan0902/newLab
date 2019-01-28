@@ -2,6 +2,8 @@ package cn.yangfan.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import pojo.Item;
 
 public interface ItemDao {
@@ -10,5 +12,8 @@ public interface ItemDao {
 	public void updateItem(Item item);
 	public Item getItem(int id);
 	public ArrayList<Item> getItemList();
-	public ArrayList<Item> getItemListByUsername(String username);
+	public ArrayList<Item> getItemListByUsername(@Param("username") String username,@Param("length") int length,@Param("start") int start);
+	public ArrayList<Item> getItemList2(@Param("username") String username,@Param("length") int length,@Param("start") int start);
+	public int getTotal();
+	public int getTotalByUsername(String username);
 }

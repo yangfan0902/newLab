@@ -1,5 +1,7 @@
 package cn.yangfan.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,10 @@ public class UserService {
 	
 	public User getUserByName(String username){
 		return userDao.getUserByName(username);
+	}
+
+	public List getUsers() {
+		return userDao.getUsers();	
 	}
 	
 	

@@ -25,7 +25,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from newitem order By createTime DESC
 	</select>
 	
-	<select id="getItemListByUsername" parameterType="String" resultType="pojo.Item">
-		select * from newitem where p_name=#{username} order By createTime DESC
+	<select id="getItemList2" resultType="pojo.Item">
+		select * from newitem order By createTime DESC limit #{start},#{length}
+	</select>
+	
+	<select id="getItemListByUsername"  resultType="pojo.Item">
+		select * from newitem where p_name=#{username} order By createTime DESC limit #{start},#{length}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*) FROM newitem
+	</select>
+	
+	<select id="getTotalByUsername" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM newitem where p_name=#{username}
 	</select>
 </mapper>

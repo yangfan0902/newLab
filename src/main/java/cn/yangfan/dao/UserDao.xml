@@ -7,6 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where name=#{username}
 	</select>
 	
+	<select id="getUsers" resultType="pojo.User">
+		select * from user
+	</select>
+	
 	<update id="updateUser" parameterType="pojo.User">
 		UPDATE user SET id = #{id}, name=#{username},password=#{password},role=#{role}
 		WHERE name = #{username}

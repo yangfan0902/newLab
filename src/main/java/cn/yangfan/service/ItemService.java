@@ -34,8 +34,23 @@ public class ItemService {
 		return itemDao.getItemList();
 	}
 
-	public ArrayList<Item> getItemListByUsername(String username) {
-		return itemDao.getItemListByUsername(username);
+	public ArrayList<Item> getItemListByUsername(String username, int length, int start) {
+		return itemDao.getItemListByUsername(username,length,start);
+	}
+
+	public ArrayList<Item> getItemListByUsername2(String username, int length, int start) {
+		// TODO Auto-generated method stub
+		return itemDao.getItemList2(username,length,start);
+	}
+
+	public int getTotal() {
+		// TODO Auto-generated method stub
+		return itemDao.getTotal();
+	}
+
+	public int getTotalByUsername(String username) {
+		// TODO Auto-generated method stub
+		return itemDao.getTotalByUsername(username);
 	}
 
 }

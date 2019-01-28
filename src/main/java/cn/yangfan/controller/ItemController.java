@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.yangfan.service.ItemService;
 import pojo.Item;
+import pojo.Result;
 
 
 @Controller
@@ -34,11 +35,28 @@ public class ItemController {
 	
 	@RequestMapping("/item/itemList")
 	@ResponseBody
-	public List<Item> getItemList(HttpServletResponse response,String username){
+	public Result getItemList(HttpServletResponse response,String username,String length,String start){
+		Result result=new Result();
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		ArrayList<Item> itemList=new ArrayList<Item>();
-		itemList=itemService.getItemListByUsername(username);
-		return itemList;
+		itemList=itemService.getItemListByUsername(username,Integer.parseInt(length),Integer.parseInt(start));
+		int total=itemService.getTotalByUsername(username);
+		result.setList(itemList);
+		result.setTotal(total);
+		return result;
+	}
+	
+	@RequestMapping("/item/itemList2")
+	@ResponseBody
+	public Result getItemList2(HttpServletResponse response,String username,String length,String start){
+		Result result=new Result();
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		ArrayList<Item> itemList=new ArrayList<Item>();
+		itemList=itemService.getItemListByUsername2(username,Integer.parseInt(length),Integer.parseInt(start));
+		int total=itemService.getTotal();
+		result.setList(itemList);
+		result.setTotal(total);
+		return result;
 	}
 	
 	@RequestMapping("/item/add")
@@ -86,6 +104,16 @@ public class ItemController {
 			itemService.deleteItem(id);
 		}
 		result.put("state", "200");
+		return result;
+	}
+	
+	@RequestMapping("/item/index")
+	@ResponseBody
+	public Result getItems(){
+		Result result=new Result();
+		List list=itemService.getItemList();
+		result.setList(list);
+		result.setStatus("0");
 		return result;
 	}
 }

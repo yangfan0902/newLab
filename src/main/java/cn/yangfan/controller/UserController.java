@@ -1,6 +1,7 @@
 package cn.yangfan.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import cn.yangfan.service.UserService;
+import pojo.Result;
 import pojo.User;
 import pojo.UserResult;
 
@@ -123,6 +125,19 @@ public class UserController {
 		Map result=new HashMap();
 		result.put("state", "200");
 		result.put("msg","退出成功");
+		return result;
+		
+		
+	}
+	
+	@RequestMapping("/index")
+	@ResponseBody
+	public Result userList(){
+		List users=userService.getUsers();
+		Result result=new Result();
+		result.setStatus("0");
+		result.setList(users);
+		
 		return result;
 		
 		
