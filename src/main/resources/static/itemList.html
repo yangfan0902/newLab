@@ -60,6 +60,12 @@
 				username = result.username;
 			}
 		});
+		
+		if(username==null){
+			alert("页面过期，请重新登陆");
+			window.location.href="/";
+		}
+		
 		$("#STYLE1").html(username);
 		
 		 var table = $("#_table").dataTable({
@@ -149,7 +155,7 @@
 			'columnDefs' : [
 				{
 					"width" : "5%",
-					"targets" : [ 0,1, 3, 4,5,6,9 ]
+					"targets" : [ 0,1,4,5,6,9 ]
 				},
 				{
 					"width" : "15%",
@@ -159,6 +165,18 @@
 					"width" : "25%",
 					"targets" : 7
 				},
+				{
+					"width" : "10%",
+					"targets" : 10
+				},
+				{
+					"width" : "7%",
+					"targets" : 3
+				},
+				{
+					"width" : "15%",
+					"targets" : 8
+				}
 
 			]
         }).api();
@@ -166,7 +184,6 @@
 		
 		$(document).on("click",".edit", function() {
 			var id = $(this).parents('tr')[0].cells[0].innerHTML;
-			alert(id);
 			var index = layer.open({
 				type : 2,
 				title : $(this).val() + '订单修改',
@@ -239,6 +256,21 @@
 			})
 			
 		})
+		//修改密码
+		$("#changePassword").click(function(){
+			
+			var index = layer.open({
+				type : 2,
+				title : $(this).val() + '新建订单',
+				shade : 0.5,
+				anim : 5,
+				closeBtn : 2,
+				maxmin : true,
+				skin : 'layui-layer-rim',
+				area : [ '900px', '750px' ],
+				content : "/changePassword.html?username=" + username,
+			});
+		})
 
 	});
 </script>
@@ -260,7 +292,7 @@
 										<table width="225" border="0" align="center" cellpadding="0"
 											cellspacing="0">
 											<tr>
-												<td height="17"><div align="right">
+												<td height="17"><div align="right" id="changePassword">
 														<img src="images/pass.gif" width="69" height="17" />
 													</div></td>
 

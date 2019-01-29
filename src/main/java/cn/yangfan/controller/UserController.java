@@ -33,7 +33,7 @@ public class UserController {
 	@RequestMapping("/student/login")
 	public String studentLogin(User user,HttpSession session) {
 		
-		String name=user.getUsername();
+		String name=user.getName();
 		session.removeAttribute("username");
 		session.setAttribute("username", name);
 		return "redirect:/itemList.html";
@@ -41,8 +41,8 @@ public class UserController {
 
 	@RequestMapping("/manager/login")
 	public String managerLogin(User user) {
-		System.out.print(user.getUsername());
-		String name=user.getUsername();
+		System.out.print(user.getName());
+		String name=user.getName();
 		return "redirect:/itemList.html?username="+name;
 	}
 	@RequestMapping("/goToRegister")
@@ -57,7 +57,7 @@ public class UserController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.print(user.getUsername());
+		System.out.print(user.getName());
 		System.out.print(user.getPassword());
 		return "redirect:/registerBack.html";
 	}
@@ -93,7 +93,7 @@ public class UserController {
 	public UserResult getUserByName(@RequestBody User checkUser, HttpServletRequest request) {
 		UserResult result=new UserResult();
 			
-		User user=userService.getUserByName(checkUser.getUsername());
+		User user=userService.getUserByName(checkUser.getName());
 		if(user==null){
 			result.setState(1);
 			result.setMsg("用户名不存在");
@@ -144,5 +144,34 @@ public class UserController {
 		
 	}
 	
+	//修改密码检验
+	@RequestMapping("/password")
+	@ResponseBody
+	public Map register(User user,HttpServletRequest request) {
+		String type=request.getParameter("type");
+		Map result=new HashMap();
+		if("check".equals(type)){
+			User myuser=userService.getUserByName(user.getName());
+			if(myuser==null){
+				result.put("state", 400);
+				result.put("msg","与原密码不一致，请输入正确的原密码");
+			}else if(!(myuser.getPassword().equals(user.getPassword()))){
+				result.put("state", 400);
+				result.put("msg","与原密码不一致，请输入正确的原密码");
+			}
+			
+			return result;
+		}
+		else{
+			User myuser=userService.getUserByName(user.getName());
+			myuser.setPassword(user.getPassword());
+			userService.updateUser(myuser);
+			result.put("state", 200);
+			result.put("msg","密码修改成功");
+			return result;
+		}
+
+		
+	}
 
 }

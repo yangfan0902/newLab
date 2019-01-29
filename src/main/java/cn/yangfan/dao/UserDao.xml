@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yangfan.dao.UserDao">
 	<select id="getUserByName" parameterType="String" resultType="pojo.User">
-		select * from user where name=#{username}
+		select * from user where name=#{name}
 	</select>
 	
 	<select id="getUsers" resultType="pojo.User">
@@ -12,16 +12,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updateUser" parameterType="pojo.User">
-		UPDATE user SET id = #{id}, name=#{username},password=#{password},role=#{role}
-		WHERE name = #{username}
+		UPDATE user SET id = #{id}, name=#{name},password=#{password},role=#{role}
+		WHERE name = #{name}
 	</update>
 	
 	<delete id="deleteUser" parameterType="String">
-		DELETE FROM usert WHERE name = #{username}
+		DELETE FROM usert WHERE name = #{name}
 	</delete>
 	
 	<!-- 直接写出user的属性即可，不需要user.username -->
 	<insert id="addUser" parameterType="pojo.User">
-		insert into user (name,password,role) values (#{username},#{password},#{role})
+		insert into user (name,password,role) values (#{name},#{password},#{role})
 	</insert>
 </mapper>
