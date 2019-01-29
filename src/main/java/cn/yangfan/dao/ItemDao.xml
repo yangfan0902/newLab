@@ -40,4 +40,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotalByUsername" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM newitem where p_name=#{username}
 	</select>
+	
+	<select id="getMyWeekItem" resultType="pojo.Item">
+		select * from newitem where p_name=#{username} and createTime between #{startTime} and #{endTime} order By createTime DESC limit #{start},#{length}
+	</select>
+	
+	<select id="getMyWeekItemCount" resultType="int">
+		SELECT COUNT(*) FROM newitem where p_name=#{username} and createTime between #{startTime} and #{endTime}
+	</select>
+	
+	<select id="getWeekLabItem" resultType="pojo.Item">
+		select * from newitem where createTime between #{startTime} and #{endTime} order By createTime DESC limit #{start},#{length}
+	</select>
+	
+	<select id="getWeekLabItemCount" resultType="int">
+		SELECT COUNT(*) FROM newitem where createTime between #{startTime} and #{endTime}
+	</select>
 </mapper>

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.yangfan.service.ItemService;
 import pojo.Item;
 import pojo.Result;
+import utils.TimeUtil;
 
 
 @Controller
@@ -35,15 +36,40 @@ public class ItemController {
 	
 	@RequestMapping("/item/itemList")
 	@ResponseBody
-	public Result getItemList(HttpServletResponse response,String username,String length,String start){
+	public Result getItemList(HttpServletResponse response,String username,String length,String start,String type){
 		Result result=new Result();
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		ArrayList<Item> itemList=new ArrayList<Item>();
-		itemList=itemService.getItemListByUsername(username,Integer.parseInt(length),Integer.parseInt(start));
-		int total=itemService.getTotalByUsername(username);
-		result.setList(itemList);
-		result.setTotal(total);
-		return result;
+		
+		//我的本周订单
+		if("thisWeek".equals(type)){
+			String startTime=TimeUtil.getStartTime();
+			String endTime=TimeUtil.getEndTime();
+			itemList=itemService.getMyWeekItem(username,Integer.parseInt(length),Integer.parseInt(start),startTime,endTime);
+			int total=itemService.getMyWeekItemCount(username,startTime,endTime);
+			result.setList(itemList);
+			result.setTotal(total);
+			return result;
+		}else if("allItem".equals(type)){
+			itemList=itemService.getItemListByUsername(username,Integer.parseInt(length),Integer.parseInt(start));
+			int total=itemService.getTotalByUsername(username);
+			result.setList(itemList);
+			result.setTotal(total);
+			return result;
+			
+		}else if("labItem".contentEquals(type)){
+			String startTime=TimeUtil.getStartTime();
+			String endTime=TimeUtil.getEndTime();
+			itemList=itemService.getWeekLabItem(Integer.parseInt(length),Integer.parseInt(start),startTime,endTime);
+			int total=itemService.getWeekLabItemCount(startTime,endTime);
+			result.setList(itemList);
+			result.setTotal(total);
+			return result;
+		}
+		
+		return null;
+		
+		
 	}
 	
 	@RequestMapping("/item/itemList2")
@@ -71,7 +97,7 @@ public class ItemController {
 				return result;
 			}
 			if(item.getId()!=0){
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				item.setCreateTime(sdf.format(new Date()));
 				itemService.updateItem(item);
 				result.put("msg", "修改成功");

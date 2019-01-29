@@ -53,4 +53,25 @@ public class ItemService {
 		return itemDao.getTotalByUsername(username);
 	}
 
+	public ArrayList<Item> getMyWeekItem(String username, int length, int start, String startTime,
+			String endTime) {
+		// TODO Auto-generated method stub
+		return itemDao.getMyWeekItem(username,length,start,startTime,endTime);
+	}
+
+	public int getMyWeekItemCount(String username, String startTime, String endTime) {
+		// TODO Auto-generated method stub
+		return itemDao.getMyWeekItemCount(username,startTime,endTime);
+	}
+
+	public ArrayList<Item> getWeekLabItem(int length, int start, String startTime, String endTime) {
+		// TODO Auto-generated method stub
+		return itemDao.getWeekLabItem(length,start,startTime,endTime);
+	}
+
+	public int getWeekLabItemCount(String startTime, String endTime) {
+		// TODO Auto-generated method stub
+		return itemDao.getWeekLabItemCount(startTime,endTime);
+	}
+
 }

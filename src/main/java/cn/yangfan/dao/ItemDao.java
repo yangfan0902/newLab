@@ -16,4 +16,8 @@ public interface ItemDao {
 	public ArrayList<Item> getItemList2(@Param("username") String username,@Param("length") int length,@Param("start") int start);
 	public int getTotal();
 	public int getTotalByUsername(String username);
+	public ArrayList<Item> getMyWeekItem(@Param("username") String username,@Param("length") int length,@Param("start") int start,@Param("startTime") String startTime,@Param("endTime") String endTime);
+	public int getMyWeekItemCount(@Param("username") String username,@Param("startTime") String startTime,@Param("endTime") String endTime);
+	public ArrayList<Item> getWeekLabItem(@Param("length") int length,@Param("start") int start,@Param("startTime") String startTime,@Param("endTime") String endTime);
+	public int getWeekLabItemCount(@Param("startTime") String startTime,@Param("endTime") String endTime);
 }
