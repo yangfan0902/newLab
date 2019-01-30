@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MMALL ADMIN">
+    <meta name="author" content="Rosen">
+    <link type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>首页 - MMALL ADMIN</title>
+    <link rel="shortcut icon" href="//s.happymmall.com/admin-fe-v2/dist/favicon.ico">
+    <link href="css/mmallmain.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+<div class="navbar navbar-default top-navbar" role="navigation">
+    <div class="navbar-header"><a class="navbar-brand" href="#/"><b>HAPPY </b>MMALL</a></div>
+    <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><i
+                class="fa fa-user fa-fw"></i><span>欢迎，admin</span><i class="fa fa-caret-down"></i></a>
+            <ul class="dropdown-menu dropdown-user">
+                <li class="dropdown-item"><a><i class="fa fa-sign-out fa-fw"></i> 退出登录</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="navbar-default navbar-side">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li><a class="active-menu" aria-current="true" href="/manager.html"><i class="fa fa-bar-chart-o"></i><span>首页</span></a>
+            </li>
+            <li class="active"><a href="/order.html"><i class="fa fa-check-square-o fa-fw"></i><span>订单</span><span
+                    class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse in">
+                    <li><a aria-current="false" href="/order.html?time=thisWeek">本周订单</a></li>
+                </ul>
+                <ul class="nav nav-second-level collapse in">
+                    <li><a aria-current="false" href="/order.html?time=history">全部订单</a></li>
+                </ul>
+            </li>
+            <li><a href="/user.html"><i class="fa fa-user-o fa-fw"></i><span>用户</span></a>
+                <ul class="nav nav-second-level collapse in">
+                    <li><a aria-current="false" href="/user.html">用户列表</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12"><h1 class="page-header">订单管理</h1></div>
+    </div>
+    <div class="row">
+        <div class="search-wrap col-md-12">
+            <div class="form-inline">
+                <div class="form-group"><select class="form-control">
+                    <option value="orderNumber">按订单号查询</option>
+                </select></div>
+                <div class="form-group"><input type="text" class="form-control" placeholder="订单号"></div>
+                <button type="button" class="btn btn-default">查询</button>
+            </div>
+        </div>
+        <div class="table-wrap col-md-12">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>订单号</th>
+                    <th>收件人</th>
+                    <th>订单状态</th>
+                    <th>订单总价</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548807871429">1548807871429</a></td>
+                    <td></td>
+                    <td>已取消</td>
+                    <td>￥3812</td>
+                    <td>2019-01-30 08:24:31</td>
+                    <td><a class="opear" href="/order/detail/1548807871429">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548762698958">1548762698958</a></td>
+                    <td>龙先生</td>
+                    <td>未支付</td>
+                    <td>￥4827.9</td>
+                    <td>2019-01-29 19:51:38</td>
+                    <td><a class="opear" href="/order/detail/1548762698958">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548752243958">1548752243958</a></td>
+                    <td>11</td>
+                    <td>未支付</td>
+                    <td>￥2604198</td>
+                    <td>2019-01-29 16:57:23</td>
+                    <td><a class="opear" href="/order/detail/1548752243958">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548750218925">1548750218925</a></td>
+                    <td>龙先生</td>
+                    <td>未支付</td>
+                    <td>￥106</td>
+                    <td>2019-01-29 16:23:38</td>
+                    <td><a class="opear" href="/order/detail/1548750218925">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548744092652">1548744092652</a></td>
+                    <td>龙先生</td>
+                    <td>未支付</td>
+                    <td>￥8390</td>
+                    <td>2019-01-29 14:41:32</td>
+                    <td><a class="opear" href="/order/detail/1548744092652">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548678911837">1548678911837</a></td>
+                    <td>huyf</td>
+                    <td>未支付</td>
+                    <td>￥12</td>
+                    <td>2019-01-28 20:35:11</td>
+                    <td><a class="opear" href="/order/detail/1548678911837">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548600739972">1548600739972</a></td>
+                    <td>123</td>
+                    <td>已取消</td>
+                    <td>￥28</td>
+                    <td>2019-01-27 22:52:19</td>
+                    <td><a class="opear" href="/order/detail/1548600739972">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548600349041">1548600349041</a></td>
+                    <td>123</td>
+                    <td>未支付</td>
+                    <td>￥2799</td>
+                    <td>2019-01-27 22:45:49</td>
+                    <td><a class="opear" href="/order/detail/1548600349041">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548596755029">1548596755029</a></td>
+                    <td>123</td>
+                    <td>未支付</td>
+                    <td>￥33</td>
+                    <td>2019-01-27 21:45:54</td>
+                    <td><a class="opear" href="/order/detail/1548596755029">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="opear" href="/order/detail/1548596700802">1548596700802</a></td>
+                    <td>vadsb</td>
+                    <td>未支付</td>
+                    <td>￥375.8</td>
+                    <td>2019-01-27 21:45:00</td>
+                    <td><a class="opear" href="/order/detail/1548596700802">查看</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="rc-pagination " unselectable="unselectable">
+                    <li title="上一页" tabindex="0" class="rc-pagination-disabled rc-pagination-prev" aria-disabled="true">
+                        <a class="rc-pagination-item-link"></a></li>
+                    <li title="1" class="rc-pagination-item rc-pagination-item-1 rc-pagination-item-active"
+                        tabindex="0"><a>1</a></li>
+                    <li title="2" class="rc-pagination-item rc-pagination-item-2" tabindex="0"><a>2</a></li>
+                    <li title="3" class="rc-pagination-item rc-pagination-item-3" tabindex="0"><a>3</a></li>
+                    <li title="4" class="rc-pagination-item rc-pagination-item-4" tabindex="0"><a>4</a></li>
+                    <li title="5" class="rc-pagination-item rc-pagination-item-5 rc-pagination-item-before-jump-next"
+                        tabindex="0"><a>5</a></li>
+                    <li title="向后 5 页" tabindex="0" class="rc-pagination-jump-next"><a
+                            class="rc-pagination-item-link"></a></li>
+                    <li title="411" class="rc-pagination-item rc-pagination-item-411" tabindex="0"><a>411</a></li>
+                    <li title="下一页" tabindex="0" class=" rc-pagination-next" aria-disabled="false"><a
+                            class="rc-pagination-item-link"></a></li>
+                    <li class="rc-pagination-options">
+                        <div class="rc-pagination-options-quick-jumper">跳至<input type="text" value="">页</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>-->
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

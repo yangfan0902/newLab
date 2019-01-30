@@ -57,11 +57,18 @@ public class ItemController {
 			result.setTotal(total);
 			return result;
 			
-		}else if("labItem".contentEquals(type)){
+		}else if("labItem".equals(type)){
 			String startTime=TimeUtil.getStartTime();
 			String endTime=TimeUtil.getEndTime();
 			itemList=itemService.getWeekLabItem(Integer.parseInt(length),Integer.parseInt(start),startTime,endTime);
 			int total=itemService.getWeekLabItemCount(startTime,endTime);
+			result.setList(itemList);
+			result.setTotal(total);
+			return result;
+		}else if("labItemHistory".equals(type)){
+			
+			itemList=itemService.getLabItemHistory(Integer.parseInt(length),Integer.parseInt(start));
+			int total=itemService.getLabItemHistoryCount();
 			result.setList(itemList);
 			result.setTotal(total);
 			return result;

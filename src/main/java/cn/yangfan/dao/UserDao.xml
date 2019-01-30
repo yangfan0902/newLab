@@ -8,7 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getUsers" resultType="pojo.User">
-		select * from user
+		select * from user limit #{start},#{length}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from user
 	</select>
 	
 	<update id="updateUser" parameterType="pojo.User">

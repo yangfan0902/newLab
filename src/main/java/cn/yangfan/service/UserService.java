@@ -29,8 +29,13 @@ public class UserService {
 		return userDao.getUserByName(username);
 	}
 
-	public List getUsers() {
-		return userDao.getUsers();	
+	public List getUsers(int length, int start) {
+		return userDao.getUsers(length,start);	
+	}
+
+	public int getTotal() {
+		// TODO Auto-generated method stub
+		return userDao.getTotal();	
 	}
 	
 	

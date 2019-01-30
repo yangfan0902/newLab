@@ -40,10 +40,11 @@ public class UserController {
 	}
 
 	@RequestMapping("/manager/login")
-	public String managerLogin(User user) {
-		System.out.print(user.getName());
+	public String managerLogin(User user,HttpSession session) {
 		String name=user.getName();
-		return "redirect:/itemList.html?username="+name;
+		session.removeAttribute("username");
+		session.setAttribute("username", name);
+		return "redirect:/manager.html";
 	}
 	@RequestMapping("/goToRegister")
 	public String goToRegister() {
@@ -131,7 +132,7 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("/index")
+/*	@RequestMapping("/index")
 	@ResponseBody
 	public Result userList(){
 		List users=userService.getUsers();
@@ -142,7 +143,7 @@ public class UserController {
 		return result;
 		
 		
-	}
+	}*/
 	
 	//修改密码检验
 	@RequestMapping("/password")
@@ -171,6 +172,20 @@ public class UserController {
 			return result;
 		}
 
+		
+	}
+	
+	@RequestMapping("/userList")
+	@ResponseBody
+	public Result userList(String length,String start){
+		List users=userService.getUsers(Integer.parseInt(length),Integer.parseInt(start));
+		int total=userService.getTotal();
+		Result result=new Result();
+		result.setTotal(total);
+		result.setList(users);
+		
+		return result;
+		
 		
 	}
 

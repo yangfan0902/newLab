@@ -74,4 +74,14 @@ public class ItemService {
 		return itemDao.getWeekLabItemCount(startTime,endTime);
 	}
 
+	public ArrayList<Item> getLabItemHistory(int length, int start) {
+		// TODO Auto-generated method stub
+		return itemDao.getLabItemHistory(length,start);
+	}
+
+	public int getLabItemHistoryCount() {
+		// TODO Auto-generated method stub
+		return itemDao.getLabItemHistoryCount();
+	}
+
 }

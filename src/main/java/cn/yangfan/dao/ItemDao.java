@@ -20,4 +20,6 @@ public interface ItemDao {
 	public int getMyWeekItemCount(@Param("username") String username,@Param("startTime") String startTime,@Param("endTime") String endTime);
 	public ArrayList<Item> getWeekLabItem(@Param("length") int length,@Param("start") int start,@Param("startTime") String startTime,@Param("endTime") String endTime);
 	public int getWeekLabItemCount(@Param("startTime") String startTime,@Param("endTime") String endTime);
+	public ArrayList<Item> getLabItemHistory(@Param("length") int length,@Param("start") int start);
+	public int getLabItemHistoryCount();
 }

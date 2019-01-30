@@ -56,4 +56,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getWeekLabItemCount" resultType="int">
 		SELECT COUNT(*) FROM newitem where createTime between #{startTime} and #{endTime}
 	</select>
+	
+	<select id="getLabItemHistory" resultType="pojo.Item">
+		SELECT * FROM newitem order By createTime DESC limit #{start},#{length}
+	</select>
+	
+	<select id="getLabItemHistoryCount" resultType="int">
+		SELECT COUNT(*) FROM newitem
+	</select>
 </mapper>

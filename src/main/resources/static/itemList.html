@@ -10,14 +10,13 @@
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
 <!-- DataTables -->
-<script type="text/javascript" charset="utf8"
-	src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="layer-v3.1.1/layer/layer.js"></script>
 <script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
 <style type="text/css">
 	#_table, #_table>tbody>tr>td, #_table>thead:first-child>tr:first-child>th
 	{
-		border: solid 1px;
+		border: solid 1px #DCDCDC;
 	}
 </style>
 <script type="text/javascript">
@@ -77,8 +76,8 @@
 	            serverSide: true,  //启用服务器端分页
 	            searching: false,  //禁用原生搜索
 	            destroy: true,
-	            orderMulti: false,  //启用多列排序
-	            order: [],  //取消默认排序查询,否则复选框一列会出现小箭头
+	            ordering: false,  
+	            order:[],//取消默认排序查询,否则复选框一列会出现小箭头
 	            
 	            pagingType: "simple_numbers",  //分页样式：simple,simple_numbers,full,full_numbers
 	            ajax: function (data, callback, settings) {
