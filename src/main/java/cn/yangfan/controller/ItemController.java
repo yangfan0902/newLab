@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,6 +147,31 @@ public class ItemController {
 		Result result=new Result();
 		List list=itemService.getItemList();
 		result.setList(list);
+		result.setStatus("0");
+		return result;
+	}
+	
+	@RequestMapping("/item/id")
+	@ResponseBody
+	public Result checkItems(HttpServletRequest request){
+		String type=request.getParameter("type");
+		String[] ids=request.getParameterValues("id[]");
+		
+		if("agree".equals(type)){
+			for(String id:ids){
+				Item item=itemService.getItem(Integer.parseInt(id));
+				item.setP_check(1);
+				itemService.updateItem(item);
+			}		
+		}
+		if("disagree".equals(type)){
+			for(String id:ids){
+				Item item=itemService.getItem(Integer.parseInt(id));
+				item.setP_check(2);
+				itemService.updateItem(item);
+			}	
+		}
+		Result result=new Result();
 		result.setStatus("0");
 		return result;
 	}

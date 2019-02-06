@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yangfan.dao.ItemDao">
-	<select id="getItem" parameterType="String" resultType="pojo.Item">
+	<select id="getItem" parameterType="int" resultType="pojo.Item">
 		select * from newitem where id=#{id}
 	</select>
 	
