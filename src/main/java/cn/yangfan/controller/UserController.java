@@ -188,5 +188,28 @@ public class UserController {
 		
 		
 	}
+	
+	@RequestMapping("/manage")
+	@ResponseBody
+	public Result manageUser(HttpServletRequest request){
+		String username=request.getParameter("username");
+		String type=request.getParameter("type");
+		User user=userService.getUserByName(username);
+		
+		if("delete".equals(type)){
+			
+			userService.deleteUser(username);
+		}else{
+			
+			user.setRole(type);
+			userService.updateUser(user);
+		}
+		Result result=new Result();
+		result.setStatus("0");
+		
+		return result;
+		
+		
+	}
 
 }

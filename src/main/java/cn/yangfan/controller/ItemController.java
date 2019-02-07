@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.yangfan.service.ItemService;
+import cn.yangfan.service.UserService;
 import pojo.Item;
 import pojo.Result;
 import utils.TimeUtil;
@@ -28,6 +29,9 @@ public class ItemController {
 	
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/")
 	public ModelAndView  index(){
@@ -173,6 +177,22 @@ public class ItemController {
 		}
 		Result result=new Result();
 		result.setStatus("0");
+		return result;
+	}
+	
+	@RequestMapping("/item/managerInfo")
+	@ResponseBody
+	public Map IndexInfo(){
+		String startTime=TimeUtil.getStartTime();
+		String endTime=TimeUtil.getEndTime();
+		
+		int weekNum=itemService.getWeekLabItemCount(startTime, endTime);
+		int historyNum=itemService.getLabItemHistoryCount();
+		int userNum=userService.getTotal();
+		Map result=new HashMap();
+		result.put("weekNum", weekNum);
+		result.put("historyNum",historyNum);
+		result.put("userNum",userNum);
 		return result;
 	}
 }

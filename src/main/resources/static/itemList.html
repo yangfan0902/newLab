@@ -5,7 +5,9 @@
 <link rel="stylesheet" type="text/css"
 	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 <link type="text/css" href="css/buttons.dataTables.min.css"></link>
-
+<link type="text/css"
+	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- jQuery -->
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
@@ -17,6 +19,11 @@
 	#_table, #_table>tbody>tr>td, #_table>thead:first-child>tr:first-child>th
 	{
 		border: solid 1px #DCDCDC;
+	}
+	.optWrapper{
+		position: fixed;
+		margin-left: 130px;
+		z-index: 99
 	}
 </style>
 <script type="text/javascript">
@@ -201,6 +208,11 @@
 		
 		$(document).on("click",".edit", function() {
 			var id = $(this).parents('tr')[0].cells[0].innerHTML;
+			var status=$(this).parents('tr')[0].cells[9].innerHTML;
+			if("未审核"!=status){
+				alert("已审核订单无法修改");
+				return false;
+			}
 			var index = layer.open({
 				type : 2,
 				title : $(this).val() + '订单修改',
@@ -216,6 +228,11 @@
 
 		$(document).on("click",".delete", function() {
 			var id = $(this).parents('tr')[0].cells[0].innerHTML;
+			var status=$(this).parents('tr')[0].cells[9].innerHTML;
+			if("未审核"!=status){
+				alert("已审核订单无法删除");
+				return false;
+			}
 			$.ajax({
 				async : false,
 				type : "GET",
@@ -475,16 +492,14 @@
 
 									</td>
 									<td valign="bottom" class="STYLE1"><div align="right">
-											<img src="images/sj.gif" width="6" height="7" />
-											IP：192.168.0.11 &nbsp; &nbsp;&nbsp;<img src="images/sj.gif"
-												width="6" height="7" /> &nbsp;提供商：中国深圳 &nbsp; &nbsp; <img
-												src="images/sj.gif" width="6" height="7" /> &nbsp;单位：深圳某单位
+											<img src="images/sj.gif"
+												width="6" height="7" /> &nbsp;提供商：XD3J &nbsp; &nbsp; <img
+												src="images/sj.gif" width="6" height="7" /> &nbsp;单位：能环实验室
 										</div></td>
 								</tr>
 							</table>
 						</td>
-						<td width="17"><img src="images/main_32.gif" width="17"
-							height="30" /></td>
+						
 					</tr>
 				</table>
 			</td>
@@ -492,11 +507,11 @@
 	</table>
 	<br />
 
-	<div>
-		<button id="create">创建订单</button>
-		<button id="thisWeek">我的本周订单</button>
-		<button id="allItem">我的全部订单</button>
-		<button id="labItem">课题组本周订单</button>
+	<div class="optWrapper">
+		<button id="create" class="opt btn btn-info rounded btn-xs">创建订单</button>
+		<button id="thisWeek" class="opt btn btn-info rounded btn-xs">我的本周订单</button>
+		<button id="allItem" class="opt btn btn-info rounded btn-xs">我的全部订单</button>
+		<button id="labItem" class="opt btn btn-info rounded btn-xs">课题组本周订单</button>
 	</div>
 
 	<div id="t_area">

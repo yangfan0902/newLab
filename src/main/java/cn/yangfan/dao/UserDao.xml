@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="deleteUser" parameterType="String">
-		DELETE FROM usert WHERE name = #{name}
+		DELETE FROM user WHERE name = #{name}
 	</delete>
 	
 	<!-- 直接写出user的属性即可，不需要user.username -->

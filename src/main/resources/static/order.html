@@ -78,6 +78,10 @@
 	left:1375px;
 	z-index: 99
 }
+#top_opt{
+		margin-top: 20px;
+		margin-left:  1355px;
+	}
 </style>
 <script type="text/javascript">
 
@@ -366,24 +370,23 @@
 				})
 			}
 		})
+		
+		$("#logout").click(function() {
+			window.location.href = "/";
+		})
 	})
 </script>
 </head>
 <body>
 	<div class="navbar navbar-default top-navbar" role="navigation">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#/"><b>HAPPY </b>MMALL</a>
+			<a class="navbar-brand" href="#/"><b>SEU</b>LAB</a>
 		</div>
-		<ul class="nav navbar-top-links navbar-right">
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#" aria-expanded="false"><i
-					class="fa fa-user fa-fw"></i><span>欢迎，admin</span><i
-					class="fa fa-caret-down"></i></a>
-				<ul class="dropdown-menu dropdown-user">
-					<li class="dropdown-item"><a><i
-							class="fa fa-sign-out fa-fw"></i> 退出登录</a></li>
-				</ul></li>
-		</ul>
+		<div id="top_opt">
+			<span>欢迎：admin</span>
+			&nbsp
+			<span><a id="logout"> 退出登录</span>
+		</div>
 	</div>
 
 	<div class="navbar-default navbar-side">

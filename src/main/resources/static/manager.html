@@ -1,67 +1,117 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MMALL ADMIN">
-    <meta name="author" content="Rosen">
-    <link type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <title>首页 - MMALL ADMIN</title>
-    <link rel="shortcut icon" href="//s.happymmall.com/admin-fe-v2/dist/favicon.ico">
-    <link href="css/mmallmain.css" rel="stylesheet">
-    <title>Title</title>
-    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-    <script type="text/javascript">
-    	$(document).ready(function(){
-    		$("#logout").click(function(){
-    			 window.location.href="/";
-    		})
-    	})
-    </script>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="MMALL ADMIN">
+<meta name="author" content="Rosen">
+<link type="text/css"
+	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<title>首页 - MMALL ADMIN</title>
+<link rel="shortcut icon"
+	href="//s.happymmall.com/admin-fe-v2/dist/favicon.ico">
+<link href="css/mmallmain.css" rel="stylesheet">
+<title>Title</title>
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<style type="text/css">
+	#top_opt{
+		margin-top: 20px;
+		margin-left:  1355px;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$.ajax({
+			type : "get",
+			url : "/item/managerInfo",
+			async : false,
+			dataType : "json",
+			success : function(data) {
+				$("#userCount").html(data.userNum);
+				$("#weekCount").html(data.weekNum);
+				$("#itemCount").html(data.historyNum);
+			}
+		})
+
+		$("#logout").click(function() {
+			window.location.href = "/";
+		})
+	})
+</script>
 </head>
 <body>
-<div class="navbar navbar-default top-navbar" role="navigation">
+	<div class="navbar navbar-default top-navbar" role="navigation">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#/"><b>HAPPY </b>MMALL</a>
+			<a class="navbar-brand" href="#/"><b>SEU </b>LAB</a>
 		</div>
-		<ul class="nav navbar-top-links navbar-right">
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#" aria-expanded="false"><i
-					class="fa fa-user fa-fw"></i><span>欢迎，admin</span><i
-					class="fa fa-caret-down"></i></a>
-				<ul class="dropdown-menu dropdown-user">
-					<li class="dropdown-item"><a id="logout"> 退出登录</a></li>
-				</ul></li>
-		</ul>
+		<div id="top_opt">
+			<span>欢迎：admin</span>
+			&nbsp
+			<span><a id="logout"> 退出登录</span>
+		</div>
 	</div>
 
-<div class="navbar-default navbar-side">
-    <div class="sidebar-collapse">
-        <ul class="nav" id="main-menu">
-            <li><a class="active-menu" aria-current="true" href="/manager.html"><i class="fa fa-bar-chart-o"></i><span>首页</span></a>
-            </li>
-            <li class="active"><a href="/order.html?time=thisWeek"><i class="fa fa-check-square-o fa-fw"></i><span>订单</span><span
-                    class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse in">
-                    <li><a aria-current="false" href="/order.html?time=thisWeek">本周订单</a></li>
-                </ul>
-                <ul class="nav nav-second-level collapse in">
-                    <li><a aria-current="false" href="/order.html?time=history">全部订单</a></li>
-                </ul>
-            </li>
-            <li><a href="/user.html"><i class="fa fa-user-o fa-fw"></i><span>用户</span></a>
-                <ul class="nav nav-second-level collapse in">
-                    <li><a aria-current="false" href="/user.html">用户列表</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
+	<div class="navbar-default navbar-side">
+		<div class="sidebar-collapse">
+			<ul class="nav" id="main-menu">
+				<li><a class="active-menu" aria-current="true"
+					href="/manager.html"><i class="fa fa-bar-chart-o"></i><span>首页</span></a>
+				</li>
+				<li class="active"><a href="/order.html?time=thisWeek"><i
+						class="fa fa-check-square-o fa-fw"></i><span>订单</span><span
+						class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse in">
+						<li><a aria-current="false" href="/order.html?time=thisWeek">本周订单</a></li>
+					</ul>
+					<ul class="nav nav-second-level collapse in">
+						<li><a aria-current="false" href="/order.html?time=history">全部订单</a></li>
+					</ul></li>
+				<li><a href="/user.html"><i class="fa fa-user-o fa-fw"></i><span>用户</span></a>
+					<ul class="nav nav-second-level collapse in">
+						<li><a aria-current="false" href="/user.html">用户列表</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">首页</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<a class="color-box brown" href="/user.html"><p id="userCount"
+						class="count"></p>
+					<p class="desc">
+						<i class="fa fa-user-o"></i><span>用户总数</span>
+					</p></a>
+			</div>
+			<div class="col-md-4">
+				<a class="color-box green" href="/order.html?time=thisWeek"><p
+						id="weekCount" class="count"></p>
+					<p class="desc">
+						<i class="fa fa-list"></i><span>本周订单总数</span>
+					</p></a>
+			</div>
+			<div class="col-md-4">
+				<a class="color-box blue" href="/order.html?time=history"><p
+						id="itemCount" class="count"></p>
+					<p class="desc">
+						<i class="fa fa-check-square-o"></i><span>订单总数</span>
+					</p></a>
+			</div>
+		</div>
+	</div>
 
 
-<script type="text/javascript" src="js/base.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
