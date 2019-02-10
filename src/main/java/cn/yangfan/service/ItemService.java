@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.yangfan.dao.ItemDao;
 import pojo.Item;
@@ -13,14 +14,17 @@ public class ItemService {
 	@Autowired
 	private ItemDao itemDao;
 	
+	@Transactional
 	public void addItem(Item item){
 		itemDao.addItem(item);
 	}
 	
+	@Transactional
 	public void deleteItem(int id){
 		itemDao.deleteItem(id);
 	}
 	
+	@Transactional
 	public void updateItem(Item item){
 		itemDao.updateItem(item);
 	}
